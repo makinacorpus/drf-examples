@@ -7,16 +7,22 @@ from baz.viewsets import BazViewSet
 from foo.viewsets import FooViewSet
 
 
-router = DefaultRouter()
-router.register('api/bar', BarViewSet)
-router.register('api/baz', BazViewSet)
-router.register('api/foo', FooViewSet)
+router_bar = DefaultRouter()
+router_bar.register('bar', BarViewSet)
+
+router_baz = DefaultRouter()
+router_baz.register('baz', BazViewSet)
+
+router_foo = DefaultRouter()
+router_foo.register('foo', FooViewSet)
 
 urlpatterns = [
     # Some Web views
-    url(r'^foo/', include('foo.urls', namespace='foo')),
-    url(r'^bar/', include('bar.urls', namespace='bar')),
-    url(r'^baz/', include('baz.urls', namespace='baz')),
+    url(r'^web/foo/', include('foo.urls', namespace='foo')),
+    url(r'^web/bar/', include('bar.urls', namespace='bar')),
+    url(r'^web/baz/', include('baz.urls', namespace='baz')),
+    # Dirty stuff begins
+    url(r'^api/', include(router_bar.urls, namespace='bar')),
+    url(r'^api/', include(router_baz.urls, namespace='baz')),
+    url(r'^api/', include(router_foo.urls, namespace='foo')),
 ]
-# Append our API views
-urlpatterns += router.urls
