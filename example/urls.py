@@ -14,9 +14,9 @@ router.register('api/foo', FooViewSet)
 
 urlpatterns = [
     # Some Web views
-    url(r'^foo/', include('foo.urls', namespace='foo')),
-    url(r'^bar/', include('bar.urls', namespace='bar')),
-    url(r'^baz/', include('baz.urls', namespace='baz')),
+    url(r'^web/foo/', include('foo.urls', namespace='foo')),
+    url(r'^web/bar/', include('bar.urls', namespace='bar')),
+    url(r'^web/baz/', include('baz.urls', namespace='baz')),
 ]
 # Append our API views
 urlpatterns += router.urls
