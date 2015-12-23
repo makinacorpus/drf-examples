@@ -1,7 +1,14 @@
 from django.conf.urls import url
 
-from . import views
+from rest_framework.routers import DefaultRouter
+
+from .views import MyWebView
+from .viewsets import BarViewSet
+
+router = DefaultRouter()
+router.register('api/bar', BarViewSet)
 
 urlpatterns = [
-    url(r'^mywebview/$', views.MyWebView.as_view(), name='mywebview'),
+    url(r'^web/bar/mywebview/$', MyWebView.as_view(), name='mywebview'),
 ]
+urlpatterns += router.urls
