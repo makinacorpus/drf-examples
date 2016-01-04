@@ -8,9 +8,9 @@ from foo.viewsets import FooViewSet
 
 
 router = DefaultRouter()
-router.register('bar', BarViewSet)
-router.register('baz', BazViewSet)
-router.register('foo', FooViewSet)
+router.register('api/bar', BarViewSet)
+router.register('api/baz', BazViewSet)
+router.register('api/foo', FooViewSet)
 
 urlpatterns = [
     # Some Web views
