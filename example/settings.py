@@ -124,3 +124,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+REST_FRAMEWORK = {
+    'DEFAULT_VERSIONING_CLASS': 'example.versioning.AcceptHeaderVersioningRequired',
+    'ALLOWED_VERSIONS': ('1.0', '1.1'),
+    'DEFAULT_VERSION': '1.0',
+}
