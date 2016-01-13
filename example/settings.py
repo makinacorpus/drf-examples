@@ -124,3 +124,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PARSER_CLASSES': (
+        'rest_framework.parsers.JSONParser',  # for backward compatibility
+        'example.parsers.ExampleJSONParser',
+        'rest_framework.parsers.FormParser',
+        'rest_framework.parsers.MultiPartParser',
+        # 'rest_framework_xml.parsers.XMLParser',  # For grandpa
+    ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',  # for backward compatibility
+        'example.renderers.ExampleJSONRenderer',
+        # 'rest_framework_xml.renderers.XMLRenderer',  # For grandpa
+    ),
+}
