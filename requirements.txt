@@ -1,0 +1,4 @@
+Django==1.9
+django-extensions==1.6.1
+djangorestframework==3.3.2
+djangorestframework-xml==1.3.0
