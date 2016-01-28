@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 """
 Django settings for example project.
 
@@ -124,3 +126,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+REST_FRAMEWORK = {
+    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.URLPathVersioning',
+    # Oulala, faut pas zapper d'être synchro avec les fichiers d'URLconf. Ou
+    # bien ne pas mettre de version dans les regex...
+    'ALLOWED_VERSIONS': ('v2', 'v3'),
+}
