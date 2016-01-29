@@ -8,15 +8,16 @@ from foo.viewsets import FooViewSet
 
 
 router = DefaultRouter()
-router.register('api/bar', BarViewSet)
-router.register('api/baz', BazViewSet)
-router.register('api/foo', FooViewSet)
+router.register('bar', BarViewSet)
+router.register('baz', BazViewSet)
+router.register('foo', FooViewSet)
 
 urlpatterns = [
     # Some Web views
     url(r'^foo/', include('foo.urls', namespace='foo')),
     url(r'^bar/', include('bar.urls', namespace='bar')),
     url(r'^baz/', include('baz.urls', namespace='baz')),
+    url(r'^api/v1/', include(router.urls, namespace='v1')),
+    url(r'^api/v2/', include(router.urls, namespace='v2')),
+    url(r'^api/v3/', include(router.urls, namespace='v3')),
 ]
-# Append our API views
-urlpatterns += router.urls
