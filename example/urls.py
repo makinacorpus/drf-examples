@@ -1,22 +1,12 @@
 from django.conf.urls import include, url
 
-from rest_framework.routers import DefaultRouter
-
-from bar.viewsets import BarViewSet
-from baz.viewsets import BazViewSet
-from foo.viewsets import FooViewSet
-
-
-router = DefaultRouter()
-router.register('api/bar', BarViewSet)
-router.register('api/baz', BazViewSet)
-router.register('api/foo', FooViewSet)
-
 urlpatterns = [
     # Some Web views
     url(r'^foo/', include('foo.urls', namespace='foo')),
     url(r'^bar/', include('bar.urls', namespace='bar')),
     url(r'^baz/', include('baz.urls', namespace='baz')),
+    # API views
+    url(r'^api/v1/', include('example.v1_urls', namespace='v1')),
+    url(r'^api/v2/', include('example.v2_urls', namespace='v2')),
+    url(r'^api/v3/', include('example.v3_urls', namespace='v3')),
 ]
-# Append our API views
-urlpatterns += router.urls
