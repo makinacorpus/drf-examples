@@ -124,3 +124,28 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PARSER_CLASSES': (
+        'rest_framework.parsers.JSONParser',  # Default
+        'rest_framework.parsers.MultiPartParser',  # For file upload only
+        'rest_framework_xml.parsers.XMLParser',  # For grandpa
+    ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',  # Default
+        'rest_framework_xml.renderers.XMLRenderer',  # For grandpa
+    ),
+    # Same as DEFAULT_PARSER_CLASSES, but with renderer classes. Why ?
+    # Because they are used to encode data, which would then be parsed
+    'TEST_REQUEST_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework_xml.renderers.XMLRenderer',
+        'rest_framework.renderers.MultiPartRenderer',
+    ),
+    # Use json as default instead of multipart. It means that you must set
+    # it explicitly if you want to *upload* file.
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json',
+}
